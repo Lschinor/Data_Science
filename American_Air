@@ -1,0 +1,104 @@
+import pandas as pd
+import math
+import matplotlib.pyplot as plt
+import statistics
+import numpy as np
+
+aal = pd.read_csv('AAL.csv')
+aal
+
+year05 = aal.loc[(aal['Date'].str.contains('2005'))]
+vol1 = year05['Volume']
+vol1
+soma_05 = sum(vol1)
+soma_05
+
+year06 = aal.loc[(aal['Date'].str.contains('2006'))]
+vol2 = year06['Volume']
+vol2
+soma_06 = sum(vol2)
+soma_06
+
+year07 = aal.loc[(aal['Date'].str.contains('2007'))]
+vol3 = year07['Volume']
+vol3
+soma_07 = sum(vol3)
+soma_07
+
+med = soma_05, soma_06, soma_07
+media = statistics.median(med)
+media
+
+names = ['2005', '2006', '2007']
+values = [soma_05, soma_06, soma_07]
+
+plt.figure(figsize=(30, 7))
+plt.title("Vole de 2005-2007")
+plt.xlabel('Ano')
+plt.ylabel("Volume (Milhar)")
+
+plt.subplot(131)
+plt.bar(names, values)
+
+
+plt.show()
+
+year20 = aal.loc[(aal['Date'].str.contains('2020'))]
+vol = year20['Volume']
+vol
+soma_20 = sum(vol)
+soma_20
+​
+year21 = aal.loc[(aal['Date'].str.contains('2021'))]
+vol = year21['Volume']
+vol
+soma_21 = sum(vol)
+soma_21
+
+year22 = aal.loc[(aal['Date'].str.contains('2022'))]
+vol = year22['Volume']
+vol
+soma_22 = sum(vol)
+soma_22
+
+totmed = soma_20, soma_21, soma_22
+median = statistics.median(totmed)
+median
+
+year19 = aal.loc[(aal['Date'].str.contains('2019'))]
+vol = year19["Volume"]
+vol
+soma_19 = sum(vol)
+soma_19
+1762307900
+names = ['2019','2020', '2021', '2022']
+values = [soma_19,soma_20, soma_21, soma_22]
+
+plt.figure(figsize=(30, 7))
+plt.title("Vole de 2020-2022")
+plt.xlabel('Ano')
+plt.ylabel("Volume (Milhar)")
+
+plt.subplot(131)
+plt.bar(names, values)
+
+plt.show()
+
+
+porcentagem1 = (soma_20 / soma_21 - 1) * 100
+print(f"{porcentagem1:.2f}")
+
+porcentagem2 = (soma_20/soma_19 - 1) * 100
+print(f'{porcentagem2:.2f}')
+
+dife
+
+names = ['media(05-07)', 'dife', 'media2(20-22)']
+values = [media,dife, median]
+
+plt.figure(figsize=(30, 7))
+plt.subplot(132)
+plt.scatter(names, values)
+
+plt.suptitle('Média')
+plt.show()
