@@ -1,0 +1,288 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import statistics as sta
+import numpy as np
+
+df = pd.read_csv('suicidios_2010_a_2019.csv')
+df
+
+df = df[['estado','ano','SEXO','RACACOR']]
+df
+
+ano10 = df.loc[(df['ano'] == 2010)]
+ano10 = ano10.groupby(['SEXO']).count()
+ano10
+fem10 = ano10.iloc[0,0]
+masc10 = ano10.iloc[1,0]
+mais10 = (masc - fem) / masc* 100
+mais10 * 100
+tot10 = [masc,fem]
+tot10 = sta.mean(tot10)
+print(f"O total de suicídios femininos no ano de 2010: {fem10}")
+print(f'O total de suicídios masculinos no ano de 2010: {masc10}')
+print(f'Homens cometeram suicídio {mais10:.2f}% a mais que as mulheres')
+print(f'A média de suicídios cometidos no ano de 2010: {tot10}')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2011)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2011)]
+fem = fem.groupby(['SEXO']).count()
+masc = masc.groupby(['SEXO']).count()
+masc = masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais11 = (masc - fem) / masc* 100
+mais11 * 100
+media = [masc,fem]
+media11 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2011 é: {masc}')
+print(f'O total de suicidios femininos em 2011 é: {fem}')
+print(f'Os homens cometeram {mais11:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2011 foi: {media11}.')
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2012)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2012)]
+masc = masc.groupby(['SEXO']).count()
+fem = fem.groupby(['SEXO']).count()
+masc = masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais12 = (masc - fem) / masc* 100
+mais12 * 100
+media = [masc,fem]
+media12 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2012 é: {masc}')
+print(f'O total de suicidios femininos em 2012 é: {fem}')
+print(f'Os homens cometeram {mais12:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2012 foi: {media12}.')
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2013)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2013)]
+masc = masc.groupby(['SEXO']).count()
+fem = fem.groupby(['SEXO']).count()
+masc = masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais13 = (masc - fem) / masc* 100
+mais13 * 100
+media = [masc,fem]
+media13 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2013 é: {masc}')
+print(f'O total de suicidios femininos em 2013 é: {fem}')
+print(f'Os homens cometeram {mais13:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2013 foi: {media13}.')
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2014)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2014)]
+masc = masc.groupby(['SEXO']).count()
+fem = fem.groupby(['SEXO']).count()
+masc = masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais14 = (masc - fem) / masc* 100
+mais14 * 100        
+media = [masc,fem]
+media14 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2014 é: {masc}')
+print(f'O total de suicidios femininos em 2014 é: {fem}')
+print(f'Os homens cometeram {mais14:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2014 foi: {media14}.')
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2015)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2015)]
+masc = masc.groupby(['SEXO']).count()
+fem = masc.groupby(['SEXO']).count()
+masc =  masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais15 = (masc - fem) / masc*100
+mais15 * 100
+media = [masc,fem]
+media15 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2015 é: {masc}')
+print(f'O total de suicidios femininos em 2015 é: {fem}')
+print(f'Os homens cometeram {mais15:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2015 foi: {media15}.')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2016)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2016)]
+masc = masc.groupby(['SEXO']).count()
+fem = masc.groupby(['SEXO']).count()
+masc =  masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais16 = (masc - fem) / masc*100
+mais16 * 100
+media = [masc,fem]
+media16 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2016 é: {masc}')
+print(f'O total de suicidios femininos em 2016 é: {fem}')
+print(f'Os homens cometeram {mais16:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2015 foi: {media16}.')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2017)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2017)]
+masc = masc.groupby(['SEXO']).count()
+fem = masc.groupby(['SEXO']).count()
+masc =  masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais17 = (masc - fem) / masc*100
+mais17 * 100
+media = [masc,fem]
+media17 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2017 é: {masc}')
+print(f'O total de suicidios femininos em 2017 é: {fem}')
+print(f'Os homens cometeram {mais17:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2017 foi: {media17}.')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2018)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2018)]
+masc = masc.groupby(['SEXO']).count()
+fem = masc.groupby(['SEXO']).count()
+masc =  masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais18 = (masc - fem) / masc*100
+mais18 * 100
+media = [masc,fem]
+media18 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2018 é: {masc}')
+print(f'O total de suicidios femininos em 2018 é: {fem}')
+print(f'Os homens cometeram {mais18:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2015 foi: {media18}.')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+masc = df.loc[(df['SEXO'] == 'Masculino') & (df['ano'] == 2019)]
+fem = df.loc[(df['SEXO'] == 'Feminino') & (df['ano'] == 2019)]
+masc = masc.groupby(['SEXO']).count()
+fem = masc.groupby(['SEXO']).count()
+masc =  masc.iloc[0,0]
+fem = fem.iloc[0,0]
+mais19 = (masc - fem) / masc*100
+mais19 * 100
+media = [masc,fem]
+media19 = sta.mean(media)
+print(f'O Total de suicidios masculinos em 2019 é: {masc}')
+print(f'O total de suicidios femininos em 2019 é: {fem}')
+print(f'Os homens cometeram {mais19:.2f}% a mais que as mulheres')
+print(f'A média de suicídios em 2015 foi: {media19}.')
+
+labels = ['Homens', 'Mulheres']
+men_means = [masc]
+women_means = [fem]
+
+labels = 'Homem','Mulheres'
+sizes = [masc, fem]
+
+figl, ax1 = plt.subplots()
+
+ax1.pie(sizes, labels=labels, autopct='%1.1f', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
+
+ano = [2010, 2011, 2012, 2013, 2014, 2015, 2016,2017, 2018, 2019]
+media = [tot10, media11, media12, media13, media14, media15, media16, media17, media18, media19]
+plt.plot(ano, media)
+plt.xlabel('Ano')
+plt.ylabel('Média Anual')
+plt.title('Taxa média entre 2010-2019')
+plt.show()
+
+homens = (masc - masc10) / masc*100
+mulheres = (fem10 - fem) / fem10*100
+
+print("Os homens cometem mais suicídio quando comparado as mulheres")
+print(f"Em relação aos homens houve um aumento de {homens:.2f}%")
+print(f"Em relação as mulheres, houve uma diminuição de {mulheres:.2f}%")
