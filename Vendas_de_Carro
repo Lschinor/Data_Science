@@ -1,0 +1,207 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import statistics as sta
+
+df = pd.read_csv('supercarros_full.csv')
+df
+
+year20 =  df.loc[(df['year'] == 2020)]
+kia20 = year20.loc[(year20['brand'] == 'Kia')]
+kia20 = kia20.groupby(['brand']).count()
+Kia20 = kia20.iloc[0,0]
+
+Toyota20 = year20.loc[(year20['brand'] == 'Toyota')]
+Toyota20 = Toyota20.groupby(['brand']).count()
+Toyota20 = Toyota20.iloc[0,0]
+
+Nissan20 = year20.loc[(year20['brand'] == 'Nissan')]
+Nissan20 = Nissan20.groupby(['brand']).count()
+Nissan20 = Nissan20.iloc[0,0]
+
+Hyundai20 = year20.loc[(year20['brand'] == 'Hyundai')]
+Hyundai20 = Hyundai20.groupby(['brand']).count()
+Hyundai20 = Hyundai20.iloc[0,0]
+
+Mercedes20 = year20.loc[(year20['brand'] == 'Mercedes-Benz')]
+Mercedes20 = Mercedes20.groupby(['brand']).count()
+Mercedes20 = Mercedes20.iloc[0,0]
+
+Suzuki20 = year20.loc[(year20['brand'] == 'Suzuki')]
+Suzuki20 = Suzuki20.groupby(['brand']).count()
+Suzuki20 = Suzuki20.iloc[0,0]
+
+Bmw20 = year20.loc[(year20['brand'] == 'BMW')]
+Bmw20 = Bmw20.groupby(['brand']).count()
+Bmw20 = Bmw20.iloc[0,0]
+
+Fiat20 = 0
+
+names = ['Kia', 'Toyota', 'Nissan','Hyundai', 'Mercedes','Suzuki', 'BMW'  ]
+values = [Kia20, Toyota20, Nissan20, Hyundai20, Mercedes20, Suzuki20, Bmw20 ]
+
+plt.figure(figsize=(50, 3))
+
+plt.title("Car more sold in 2020")
+plt.subplot(131)
+plt.bar(names, values)
+plt.show()
+
+total_year20 = (Kia20, Toyota20, Nissan20, Hyundai20, Mercedes20, Suzuki20, Bmw20)
+total_sale20 = sum(total_year20)
+median20 = sta.median(total_year20)
+mean20 = sta.mean(total_year20)
+
+print(f"In year 2020, the total sale was {total_sale20} cars, the median was {median20} and the mean was {mean20} cars")
+print(f"The car more sold in 2020 were Toyota") 
+print(f"The car less sold in 2020 were Kia") 
+
+year21 =  df.loc[(df['year'] == 2021)]
+kia21 = year21.loc[(year21['brand'] == 'Kia')]
+kia21 = kia21.groupby(['brand']).count()
+Kia21 = kia21.iloc[0,0]
+
+Toyota21 = year21.loc[(year21['brand'] == 'Toyota')]
+Toyota21 = Toyota21.groupby(['brand']).count()
+Toyota21 = Toyota21.iloc[0,0]
+
+Nissan21 = year21.loc[(year21['brand'] == 'Nissan')]
+Nissan21 = Nissan21.groupby(['brand']).count()
+Nissan21 = Nissan21.iloc[0,0]
+
+Hyundai21 = year21.loc[(year21['brand'] == 'Hyundai')]
+Hyundai21 = Hyundai21.groupby(['brand']).count()
+Hyundai21 = Hyundai21.iloc[0,0]
+
+Mercedes21 = year21.loc[(year21['brand'] == 'Mercedes-Benz')]
+Mercedes21 = Mercedes21.groupby(['brand']).count()
+Mercedes21 = Mercedes21.iloc[0,0]
+
+Suzuki21 = year21.loc[(year21['brand'] == 'Suzuki')]
+Suzuki21 = Suzuki21.groupby(['brand']).count()
+Suzuki21 = Suzuki21.iloc[0,0]
+
+Bmw21 = year21.loc[(year21['brand'] == 'BMW')]
+Bmw21 = Bmw21.groupby(['brand']).count()
+Bmw21 = Bmw21.iloc[0,0]
+
+Fiat21 = 0
+
+names = ['Kia', 'Toyota', 'Nissan','Hyundai', 'Mercedes','Suzuki','BMW' ]
+values = [Kia21, Toyota21, Nissan21, Hyundai21, Mercedes21, Suzuki21, Bmw21]
+
+plt.figure(figsize=(50, 3))
+
+plt.title("Car more sold in 2021")
+plt.subplot(131)
+plt.bar(names, values)
+plt.show()
+
+total_year21 = (Kia20, Toyota20, Nissan20, Hyundai20, Mercedes20, Suzuki20, Bmw20)
+total_sale21 = sum(total_year21)
+median21 = sta.median(total_year21)
+mean21 = sta.mean(total_year21)
+
+print(f"In year 2021, the total sale was {total_sale21} cars, the median was {median21} and the mean was {mean21} cars")
+print(f"The car more sold in 2021 were Kia") 
+print(f"The car less sold in 2021 were BMW") 
+
+year22 =  df.loc[(df['year'] == 2022)]
+kia22 = year22.loc[(year22['brand'] == 'Kia')]
+kia22 = kia22.groupby(['brand']).count()
+Kia22 = kia22.iloc[0,0]
+
+Toyota22 = year22.loc[(year22['brand'] == 'Toyota')]
+Toyota22 = Toyota22.groupby(['brand']).count()
+Toyota22 = Toyota22.iloc[0,0]
+
+Nissan22 = year22.loc[(year22['brand'] == 'Nissan')]
+Nissan22 = Nissan22.groupby(['brand']).count()
+Nissan22 = Nissan22.iloc[0,0]
+
+Hyundai22 = year22.loc[(year22['brand'] == 'Hyundai')]
+Hyundai22 = Hyundai22.groupby(['brand']).count()
+Hyundai22 = Hyundai22.iloc[0,0]
+
+Suzuki22 = year22.loc[(year22['brand'] == 'Suzuki')]
+Suzuki22 = Suzuki22.groupby(['brand']).count()
+Suzuki22 = Suzuki22.iloc[0,0]
+
+Fiat22 = year22.loc[(year22['brand'] == 'Fiat')]
+Fiat22 = Fiat22.groupby(['brand']).count()
+Fiat22 = Fiat22.iloc[0,0]
+
+Mercedes22 = year22.loc[(year22['brand'] == 'Mercedes-Benz')]
+Mercedes22 = Mercedes22.groupby(['brand']).count()
+Mercedes22 = Mercedes22.iloc[0,0]
+
+Bmw22 = year22.loc[(year22['brand'] == 'BMW')]
+Bmw22 = Bmw22.groupby(['brand']).count()
+Bmw22 = Bmw22.iloc[0,0]
+
+names = ['Kia', 'Toyota', 'Nissan','Hyundai', 'Mercedes','Suzuki', 'Fiat', 'BMW']
+values = [Kia22, Toyota22, Nissan22, Hyundai22, Mercedes22, Suzuki22, Fiat22, Bmw22 ]
+
+plt.figure(figsize=(50, 3))
+
+plt.title("Car more sold in 2022")
+plt.subplot(131)
+plt.bar(names, values)
+plt.show()
+
+total_year22 = (Kia22, Toyota22, Nissan22, Hyundai22, Mercedes22, Suzuki22, Fiat22, Bmw22)
+total_sale22 = sum(total_year22)
+median20 = sta.median(total_year22)
+mean20 = sta.mean(total_year22)
+
+print(f"In year 2022, the total sale was {total_sale22} cars, the median was {median20} and the mean was {mean20} cars")
+print(f"The car more sold in 2022 were Toyota") 
+print(f"The car less sold in 2022 were Fiat")
+
+names = [2020, 2021, 2022]
+values = [total_sale20, total_sale21, total_sale22]
+
+plt.figure(figsize=(9, 3))
+plt.subplot(133)
+
+plt.plot(names, values)
+plt.title('Total sales')
+plt.show()
+
+kia = Kia20 + Kia21 + Kia22
+
+
+toyota = Toyota20 + Toyota21 + Toyota22
+
+nissan =  Nissan20 + Nissan21 + Nissan22
+
+hyundai = Hyundai20 + Hyundai21 + Hyundai22
+
+mercedes =  Mercedes20 + Mercedes21 + Mercedes22
+
+suzuki =  Suzuki20 + Suzuki21 + Suzuki22
+
+bmw = Bmw20 + Bmw21 + Bmw22
+
+fiat = Fiat22
+
+meankia = kia / 3
+meantoyota = toyota / 3
+meannissan = nissan / 3
+meanhyundai = hyundai / 3
+meanmercedes = mercedes / 3
+meansuzuki = suzuki / 3
+meanbmw = bmw / 3
+meanfiat = fiat / 1
+
+cars = ['Kia', 'Toyota', 'Nissan', 'Hyundai', 'Mercedes', 'Suzuki', 'BMW', 'Fiat']
+value = [kia, toyota, nissan, hyundai, mercedes, suzuki, bmw, fiat]
+mean = [meankia, meantoyota, meannissan, meanhyundai, meanmercedes, meansuzuki, meanbmw, meanfiat]
+year_2020 = [Kia20, Toyota20, Nissan20, Hyundai20, Mercedes20, Suzuki20, Bmw20, Fiat20]
+year_2021 = [Kia21, Toyota21, Nissan21, Hyundai21, Mercedes21, Suzuki21, Bmw21, Fiat21]
+year_2022 = [Kia22, Toyota22, Nissan22, Hyundai22, Mercedes22, Suzuki22, Bmw22, Fiat22]
+
+dict = {'Cars':cars, '2020': year_2020, '2021': year_2021, '2022': year_2022,'Mean': mean,'Total Sold':value}
+
+df = pd.DataFrame(dict)
+df
+
