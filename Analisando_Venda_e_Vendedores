@@ -1,0 +1,354 @@
+import matplotlib.pyplot as plt
+import pymysql.cursors
+
+def main():
+    print("""
+    [1] Ver produtos
+    [2] Ver valor  total de vendas
+    [3] Ver prdutos vendidos
+    [4] Ver vendas por cidade
+    [5] Atualizar dados
+    """)
+
+    while True:
+
+        opcao = int(input("Qual opção deseja ? "))
+
+        if opcao == 1:
+            admin().produto()
+
+        elif opcao == 2:
+            admin().total_vendas()
+
+        elif opcao == 3:
+            admin().produtos_vendidos()
+
+        elif opcao == 4:
+            admin().vendas_cidade()
+
+        elif opcao == 5:
+            admin().atualizar()
+
+        else:
+            print('Informação inválida, tente novamente')
+
+class admin():
+
+    def __init__(self):
+        pass
+
+    def conexao(self):
+        try:
+            self.dado = pymysql.connect(
+                host='localhost',
+                user='root',
+                password='',
+                database='venda',
+                charset='utf8mb4',
+                cursorclass=pymysql.cursors.DictCursor
+
+            )
+        except:
+            print('Erro, tente novamente')
+
+    def produto(self):
+        self.conexao()
+
+        with self.dado.cursor() as curso:
+            curso.execute('select produto from vendas')
+            venda = curso.fetchall()
+            print(venda)
+
+    def total_vendas(self):
+        self.conexao()
+
+        print(""" 
+        [1] São Paulo
+        [2] Rio de Janeiro
+        [3] Minas Gerais
+        [4] Espírito Santo
+        [5] Gáfico de vendas 
+        [0] Voltar
+        """)
+
+        while True:
+
+            opcao = int(input('Qual opção desejada? '))
+
+            if opcao == 1:
+                with self.dado.cursor() as curso:
+                    curso.execute('select sum(valor) from vendas where idvenda <=12')
+                    vendasp = curso.fetchall()
+                    print(f'O total das vendas é: {vendasp}')
+
+            elif opcao == 2:
+                with self.dado.cursor() as curso:
+                    curso.execute('select sum(valor) from vendas where idvenda > 12 and idvenda <= 23')
+                    vendarj = curso.fetchall()
+                    print(f'O total de vendas foi de {vendarj}')
+
+            elif opcao == 3:
+                with self.dado.cursor() as curso:
+                    curso.execute('select sum(valor) from vendas where idvenda > 23 and idvenda <= 26')
+                    vendamg = curso.fetchall()
+                    print(f'O total de vendas foi de {vendamg}')
+
+            elif opcao == 4:
+                with self.dado.cursor() as curso:
+                    curso.execute('select sum(valor) from vendas where idvenda  > 36')
+                    vendaes = curso.fetchall()
+                    print(f'O total de vendas foi de {vendaes}')
+
+            elif opcao == 5:
+                names = ['SP', 'RJ', 'MG', 'ES']
+                values = [3004, 3920, 3250, 3260]
+
+                plt.figure(figsize=(14, 7))
+
+                plt.bar(names, values)
+
+                plt.suptitle('Total de vendas por estado')
+                plt.show()
+
+            elif opcao == 0:
+                main()
+
+            else:
+                print('Valor não identificado, digite um valor válido.')
+
+
+    def produtos_vendidos(self):
+        self.conexao()
+
+        values = ['Geladeira', 'Fogão', 'Mesa', 'Ármario', 'Jogo de pratos', 'Microondas', 'Airfryer', 'Panela elética', 'Jogo de panela',
+                 'Jogo de copo', 'Bebedouro', 'Jogo de talher']
+        names = [7000, 3080, 11836, 4800, 1260, 4200, 7400, 2960, 6400, 2400, 1440, 960]
+
+        plt.scatter(names, values)
+        plt.plot(names, values)
+        plt.suptitle('Valor total por produtos')
+        plt.show()
+
+    def vendas_cidade(self):
+        self.conexao()
+
+        while True:
+
+            print("""
+            [1] São Paulo
+            [2] Rio de Janeiro
+            [3] Minas Gerais
+            [4] Espírito Santo
+            [5] Gráficos
+            [0] Voltar
+            """)
+            cidade = int(input("Qual cidade deseja ver? "))
+
+            if cidade == 1:
+                with self.dado.cursor() as curso:
+                    curso.execute("select sum(quant_vend) from vendas where cidade = 'São Paulo'")
+                    sp = curso.fetchall()
+                    print(f'São Paulo teve um total de vendas de {sp}')
+
+            elif cidade == 2:
+                with self.dado.cursor() as curso:
+                    curso.execute("select sum(quant_vend) from vendas where cidade = 'Rio de Janeiro'")
+                    rj = curso.fetchall()
+                    print(f'Rio de Janeiro teve um total de vendas de {rj}')
+
+            elif cidade == 3:
+                with self.dado.cursor() as curso:
+                    curso.execute("select sum(quant_vend) from vendas where cidade = 'Minas Gerais'")
+                    mg = curso.fetchall()
+                    print(f'Minas Gerais teve um total de venda de {mg}')
+
+            elif cidade == 4:
+                with self.dado.cursor() as curso:
+                    curso.execute("select sum(quant_vend) from vendas where cidade = 'Espírito Santo'")
+                    es = curso.fetchall()
+                    print(f'Espírito Santo teve um total de vendas de {es}')
+
+            elif cidade == 5:
+
+                while True:
+                    print("""
+                    [1] Gráfico dos vendedores por cidade
+                    [2] Gráfico Geral
+                    """)
+
+                    opcao = int(input('Qual sua opção? '))
+
+                    if opcao == 1:
+                        print("""
+                                    [1] São Paulo
+                                    [2] Rio de Janeiro
+                                    [3] Minas Gerais
+                                    [4] Espírito Santo
+                                    """)
+                        cidade = int(input("Qual cidade deseja ver? "))
+
+                        if cidade == 1:
+                            names = ['Arnaldo', 'Bruna', 'Lecitia', 'Carla', 'Elias', 'Fernanda', 'Amanda', 'Carlos', 'José']
+                            values = [70, 70, 60, 75, 65, 86, 82, 50, 58]
+                            plt.figure(figsize=(9, 3))
+
+                            plt.bar(names, values)
+                            plt.show()
+
+                        elif cidade == 2:
+                            names = ['Lucas', 'Bruna', 'Carla', 'Dougulas', 'Vinicius', 'Fernand0', 'Guilherme', 'Thais',
+                                     'Monica']
+                            values = [80, 95, 50, 95, 86, 90, 73, 97, 90]
+                            plt.figure(figsize=(9, 3))
+
+                            plt.bar(names, values)
+                            plt.show()
+
+                        elif cidade == 3:
+
+                            names = ['Luan', 'Gustavo', 'Marcia', 'Maria', 'Ana', 'Katia', 'Miguel', 'Rebeca',
+                                     'Luis']
+                            values = [64, 80, 75, 90, 80, 74, 65, 60, 52]
+                            plt.figure(figsize=(9, 3))
+
+                            plt.bar(names, values)
+                            plt.show()
+
+                        elif cidade == 4:
+
+                            names = ['Mateus', 'Andre', 'Josue', 'Natalia', 'Lais', 'Bianca', 'Roberto', 'Carla',
+                                     'Rodrigo']
+                            values = [60, 64, 57, 60, 63, 67, 50, 67, 80]
+                            plt.figure(figsize=(9, 3))
+
+                            plt.bar(names, values)
+                            plt.show()
+
+                        elif cidade == 0:
+                            self.vendas_cidade()
+
+                        else:
+                            print("Cidade não encontra, por favor insira uma cidade válida")
+
+                    elif opcao == 2:
+
+                        cidades = ["São Paulo", "Rio de Janeiro", "Minas Gerais", "Espírito Santo"]
+                        vendas = [616, 756, 640,568 ]
+
+                        figl, axl = plt.subplots()
+                        axl.pie(vendas, labels=cidades, shadow=True, autopct='%1.1f%%', startangle=90)
+
+                        axl.axis('equal')
+
+                        plt.show()
+                        self.vendas_cidade()
+
+            elif cidade == 0:
+                main()
+
+            else:
+                print('Cidade não cadastrada, por favor, insira um cidade válida')
+
+    def atualizar(self):
+        self.conexao()
+
+        print("""
+        [1] Vendedor
+        [2] Produto
+        """)
+
+        opcao = 0
+        while opcao != 1 or opcao != 2:
+
+            opcao = int(input('Qual opcao deseja? '))
+
+            if opcao == 1:
+                while True:
+                    print("""
+                    [1] Atualizar
+                    [2] Adiconar
+                    [3] Excluir
+                    """)
+
+                    opcao = int(input("Qual alteração deseja fazer? "))
+
+                    if opcao == 1:
+
+                        idvendedor = int(input("Idvendedor: "))
+                        vendedor = str(input('Vendedor: '))
+                        cidade = str(input('Cidade: '))
+                        vendas = int(input('Vendas: '))
+
+                        with self.dado.cursor() as curso:
+                            curso.execute(f"update vendedores set vendedor = '{vendedor}', '{cidade}', '{vendas}', where idvendedor = '{idvendedor}'")
+                            self.dado.commit()
+                            print('Dados alterados com sucesso')
+                            self.conexao()
+
+                    elif opcao == 2:
+
+                        vendedor = str(input('Vendedor: '))
+                        cidade = str(input('Cidade: '))
+                        vendas = int(input('Vendas: '))
+
+                        with self.dado.cursor() as curso:
+                            adc = f"insert into vendedores (vendedor, cidade, vendas) values ('{vendedor}', '{cidade}','{vendas}')"
+                            curso.execute(adc)
+                            self.dado.commit()
+                            print("Novo vendedor cadastrado")
+
+                    elif opcao == 3:
+
+                        vendedor = int(input("Qual vendedor deseja excluir? "))
+
+                        with self.dado.cursor() as curso:
+                            curso.execute(f"delete from vendedores where vendedor = '{vendedor}'")
+                            self.dado.commit()
+                            print("Vendedor deletado")
+
+            elif opcao == 2:
+
+                while True:
+                    print("""
+                    [1] Atualizar
+                    [2] Adiconar
+                    [3] Excluir
+                    """)
+
+                    opcao = int(input("Qual alteração deseja fazer? "))
+
+                    if opcao == 1:
+
+                        idvenda = int(input("Id da venda: "))
+                        produto = str(input("Produto: "))
+                        cidade = str(input("Cidade: "))
+                        valor = int(input("Valor: "))
+                        quant_vend = int(input("Quantidade de venda: "))
+
+                        with self.dado.cursor() as curso:
+                            curso.execute(f"Update vendas set produto = '{produto}', '{cidade}', '{valor}', '{quant_vend}' where idvenda = '{idvenda}'")
+                            self.dado.commit()
+                            print("Produtos atualizados")
+
+                    elif opcao == 2:
+
+                        produto = str(input("Produto: "))
+                        cidade = str(input("Cidade: "))
+                        valor = int(input("Valor: "))
+                        quant_vend = int(input("Quantidade de vendas: "))
+
+                        with self.dado.cursor() as curso:
+                            adc = f"insert into vendas(produto, cidade, valor, quant_vend) value ('{produto}', '{cidade}','{valor}', '{quant_vend}')"
+                            curso.execute(adc)
+                            self.dado.commit()
+                            print("Produto cadastrado")
+
+                    elif opcao == 3:
+
+                        produto = str(input("Qual produto você deseja excluir? "))
+                        with self.dado.cursor() as curso:
+                            curso.execute(f"delete from vendas where produto = '{produto}'")
+
+
+if __name__ == '__main__':
+    main()
